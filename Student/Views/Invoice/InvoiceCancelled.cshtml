@@ -1,0 +1,119 @@
+﻿@{
+    TempData["Title"]="Invoice Cancelled";
+}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Invoices</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a asp-action="Index" asp-controller="Student">Dashboard</a></li>
+<li class="breadcrumb-item"><a asp-action="Index" asp-controller="Invoice">Invoice</a></li>
+<li class="breadcrumb-item active">Invoices Cancelled</li>
+</ul>
+</div>
+<div class="col-auto">
+<a asp-action="Index" asp-controller="Invoice" class="invoices-links active">
+<i class="feather feather-list"></i>
+</a>
+<a asp-action="InvoiceGrid" asp-controller="Invoice"class="invoices-links">
+<i class="feather feather-grid"></i>
+</a>
+</div>
+</div>
+</div>
+
+
+  <div class="card report-card">
+        <div class="card-body pb-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="app-listing">
+                        <li></li>
+    <li>
+    <div class="report-btn">
+        <a  onclick="return print();" class="btn">
+            <img src="assets/img/icons/invoices-icon5.png" alt="" class="me-2"> Generate report
+        </a>
+    </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card invoices-tabs-card border-0">
+<div class="card-body card-body pt-0 pb-0">
+<div class="invoices-main-tabs">
+<div class="row align-items-center">
+<div class="col-lg-8 col-md-8">
+<div class="invoices-tabs">
+<ul>
+<li><a asp-action="Index" asp-controller="Invoice">All Invoice</a></li>
+<li><a asp-action="InvoicesPaid" asp-controller="Invoice">Paid</a></li>
+<li><a asp-action="InvoiceOverdue" asp-controller="Invoice">Overdue</a></li>
+<li><a asp-action="InvoiceDraft" asp-controller="Invoice">Draft</a></li>
+<li><a asp-action="InvoiceCancelled" asp-controller="Invoice" class="active">Cancelled</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-4 col-md-4">
+<div class="invoices-settings-btn">
+
+<a asp-action="AddInvoice" class="btn">
+<i class="feather feather-plus-circle"></i> New Invoice
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-stripped table-hover datatable">
+<thead class="thead-light">
+<tr>
+<th>Invoice number</th>
+<th>Created on</th>
+<th>Invoice to</th>
+<th>Amount</th>
+<th>Status</th>
+<th class="text-end">Action</th>
+</tr>
+</thead>
+<tbody>
+                                @foreach (Invoices? invo in Model)
+                                {
+                                     <tr>
+                                    <td>
+<label class="custom_check">
+<input type="checkbox" name="invoice">
+<span class="checkmark"></span>
+</label>
+<a asp-action="ViewInvoice" class="invoice-link">@invo.Id</a>
+</td>
+<td>@invo.CreatedDate</td>
+<td>
+<h2> @invo.StudentFkNavigation.Name</h2>
+</td>
+<td class="text-primary">$@invo.Rate</td>
+<td><span class="badge bg-success-light">@invo.Status</span></td>
+<td class="text-end">
+<a asp-action="EditInvoice" asp-route-SID="@invo.Id" class="btn btn-sm btn-white text-success me-2"><i class="far fa-edit me-1"></i> Edit</a>
+</td>
+</tr> }
+ </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

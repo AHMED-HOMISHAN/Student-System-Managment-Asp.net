@@ -1,0 +1,374 @@
+﻿@model Invoices
+@{
+    TempData["Title"] = "Edit Invoice";
+}
+<div class="content container-fluid">
+
+<div class="page-header invoices-page-header">
+<div class="row align-items-center">
+<div class="col">
+<ul class="breadcrumb invoices-breadcrumb">
+<li class="breadcrumb-item invoices-breadcrumb-item">
+<a asp-action="Index" asp-controller="Invoice">
+<i class="fe fe-chevron-left"></i> Back to Invoice List
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+    @if (@Model != null)
+    {
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card invoices-add-card">
+                    <div class="card-body">
+                        <form asp-action="EditInvoice" method ="post" class="invoices-form">
+                            <div class="invoices-main-form">
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="StudentFk" > </label>
+                                            <div class="col-12 col-sm-4">
+                                                <div class="form-group local-forms">
+                                                    <label asp-for="StudentFk" >  </label>
+                                                    <select class="form-control select" Asp-for ="StudentFk">
+                                                        @foreach (var i in ViewBag.StudentFkNavigation)
+                                                        {
+                                                            <option value="@i.Id">@i.Name</option>
+                                                        }
+            </select>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+<label>Status</label>
+ <select Asp-for ="Status" class="form-control select" >
+    <option>Select Status</option>
+    <option value="Paid">Paid</option>Draft
+    <option value="Overdue">Overdue </option>
+    <option value="Draft">Draft </option>
+    <option value="Cancelled">Cancelled </option>
+</select>
+<span asp-validation-for="Status" class="text-danger"> </span>
+
+</div>
+<div class="col-xl-5 col-md-6 col-sm-12 col-12">
+<h4 class="invoice-details-title">Invoice details</h4>
+<div class="invoice-details-box">
+<div class="invoice-inner-head">
+<span>Invoice No. : @Model.Id</span>
+</div>
+<div class="invoice-inner-footer">
+<div class="row align-items-center">
+<div class="col-lg-6 col-md-6">
+<div class="invoice-inner-date">
+<span>
+Date <input class="form-control datetimepicker" Asp-for ="CreatedDate" type="datetime" placeholder="15/02/2022">
+<span asp-validation-for="CreatedDate" class="text-danger"> </span>
+
+</span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="invoice-inner-date invoice-inner-datepic">
+<span>
+Due Date <input class="form-control datetimepicker" Asp-for ="DueDate"  type="datetime" placeholder="Select">
+<span asp-validation-for="DueDate" class="text-danger"> </span>
+
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="invoice-item">
+<div class="row">
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="invoice-info">
+<strong class="customer-text">Invoice From <a class="small" href="edit-invoice.html">Edit Address</a></strong>
+<p class="invoice-details invoice-details-two">
+
+<input class="form-control" value="@Model.FromAddress"  Asp-for="FromAddress" placeholder="Address"/><br>
+<span asp-validation-for="FromAddress" class="text-danger"> </span>
+
+</p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="invoice-info">
+<strong class="customer-text">Invoice To</strong>
+<p class="invoice-details invoice-details-two">
+<input class="form-control" value="@Model.ToAddress"  Asp-for="ToAddress" placeholder="Address"/><br> <br>
+<span asp-validation-for="ToAddress" class="text-danger"> </span>
+
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="invoice-add-table">
+<h4>Item Details</h4>
+<div class="table-responsive">
+<table class="table table-center add-table-items">
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Amount</th>
+<th>Discount</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="add-row">
+<td>
+<input type="text" value="@Model.Category"  Asp-for="Category" class="form-control">
+<span asp-validation-for="Category" class="text-danger"> </span>
+
+</td>
+<td>
+<input type="text" value="@Model.Description"  Asp-for="Description" class="form-control">
+<span asp-validation-for="Description" class="text-danger"> </span>
+
+</td>
+<td>
+<input type="text" value="@Model.Quantity"  Asp-for="Quantity" class="form-control">
+<span asp-validation-for="Quantity" class="text-danger"> </span>
+
+</td>
+<td>
+<input type="text" value="@Model.Rate" Asp-for="Rate" class="form-control">
+<span asp-validation-for="Rate" class="text-danger"> </span>
+
+</td>
+<td>
+<input type="text" value="@Model.InoviceAmount" Asp-for="InoviceAmount" class="form-control">
+<span asp-validation-for="InoviceAmount" class="text-danger"> </span>
+
+</td>
+<td>
+<input type="text"  value="@Model.Discount"  Asp-for="Discount" class="form-control">
+<span asp-validation-for="Discount" class="text-danger"> </span>
+
+</td>
+<td class="add-remove text-end">
+<a href="javascript:void(0);" class="add-btn me-2"><i class="fas fa-plus-circle"></i></a>
+<a href="#" class="copy-btn me-2"><i class="fe fe-copy"></i></a><a href="javascript:void(0);" class="remove-btn"><i class="fe fe-trash-2"></i></a>
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="form-group float-end mb-0">
+<button class="btn btn-primary"  asp-route-SID="@Model.Id"  name="submit"  type="submit">Edit Invoice</button>
+
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>}
+</div>
+
+
+<div class="modal custom-modal fade invoices-preview" id="invoices_preview" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-xl">
+<div class="modal-content">
+<div class="modal-body">
+<div class="row justify-content-center">
+<div class="col-lg-12">
+<div class="card invoice-info-card">
+<div class="card-body pb-0">
+<div class="invoice-item invoice-item-one">
+<div class="row">
+<div class="col-md-6">
+<div class="invoice-logo">
+<img src="~/assets/img/logo.png" alt="logo">
+</div>
+</div>
+<div class="col-md-6">
+<div class="invoice-info">
+<div class="invoice-head">
+<h2 class="text-primary">Invoice</h2>
+<p>Invoice Number : It will appear later</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="invoice-item invoice-item-bg">
+<div class="invoice-circle-img">
+<img src="~/assets/img/invoice-circle1.png" alt="" class="invoice-circle1">
+<img src="~/assets/img/invoice-circle2.png" alt="" class="invoice-circle2">
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-12">
+<div class="invoice-info">
+ <strong class="customer-text-one">Billed to</strong>
+<h6 class="invoice-name"> InoviceTo</h6>
+<p class="invoice-details invoice-details-two">
+9087484288 <br>
+Address line 1, <br>
+Address line 2 <br>
+Zip code ,City - Country
+</p>
+</div>
+</div>
+<div class="col-lg-4 col-md-12">
+<div class="invoice-info">
+<strong class="customer-text-one">Invoice From</strong>
+<h6 class="invoice-name">Company Name</h6>
+<p class="invoice-details invoice-details-two">
+9087484288 <br>
+Address line 1, <br>
+Address line 2 <br>
+Zip code ,City - Country
+</p>
+</div>
+</div>
+<div class="col-lg-4 col-md-12">
+<div class="invoice-info invoice-info-one border-0">
+<p>Issue Date : CreatedDate</p>
+<p>Due Date : DueDate</p>
+<p class="mb-0">Status :  Status</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="invoice-item invoice-table-wrap">
+<div class="row">
+<div class="col-md-12">
+<div class="table-responsive">
+<table class="invoice-table table table-center mb-0">
+<thead>
+<tr>
+<th>Description</th>
+<th>Category</th>
+<th>Rate/Item</th>
+<th>Quantity</th>
+<th>Discount (%)</th>
+<th class="text-end">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>Description</td>
+    <td>Category</td>
+    <td>Rate<span>$</span></td>
+    <td>Quantity</td>
+    <td>Discount<span>%</span></td>
+<td class="text-end">InoviceAmount</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="col-lg-4 col-md-4">
+<div class="invoice-sign text-end">
+<img class="img-fluid d-inline-block" src="~/assets/img/signature.png" alt="sign">
+<span class="d-block">Harristemp</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal custom-modal fade bank-details" id="bank_details" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<div class="form-header text-start mb-0">
+<h4 class="mb-0">Add Bank Details</h4>
+</div>
+<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="bank-inner-details">
+<div class="row">
+<div class="col-lg-6 col-md-6">
+<div class="form-group">
+<label>Account Holder Name</label>
+<input type="text" class="form-control" placeholder="Add Name">
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="form-group">
+<label>Bank name</label>
+<input type="text" class="form-control" placeholder="Add Bank name">
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="form-group">
+<label>IFSC Code</label>
+<input type="text" class="form-control">
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="form-group">
+<label>Account Number</label>
+<input type="text" class="form-control">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<div class="bank-details-btn">
+<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn bank-cancel-btn me-2">Cancel</a>
+<a href="javascript:void(0);" class="btn bank-save-btn">Save Item</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal custom-modal fade" id="delete_invoices_details" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="form-header">
+<h3>Delete Invoice Details</h3>
+<p>Are you sure want to delete?</p>
+</div>
+<div class="modal-btn delete-action">
+<div class="row">
+<div class="col-6">
+<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Delete</a>
+</div>
+<div class="col-6">
+<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

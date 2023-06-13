@@ -1,0 +1,121 @@
+﻿@model Teachers
+
+@{
+    TempData["Title"] = "Edit Teachers";
+}
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Edit Teachers</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="Teachers.html">Teachers</a></li>
+<li class="breadcrumb-item active">Edit Teachers</li>
+</ul>
+</div>
+</div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card comman-shadow">
+                <div class="card-body">
+                    <div class="card-body">
+                        <form asp-action="EditModeler" method="post">
+                                  @if (@Model != null)
+                            {
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Name"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter a Name" value="@Model.Name" Asp-for ="Name">
+                                            <span asp-validation-for="Name" class="text-danger"> </span>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for ="Age" > </label>
+                                            <input class="form-control" type="text" placeholder="Enter an Age" value="@Model.Age" Asp-for ="Age">
+                                            <span asp-validation-for="Age" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Balance"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter a Balance" value="@Model.Balance" Asp-for ="Balance">
+                                            <span asp-validation-for="Balance" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="gender"> </label>
+                                            <select class="form-control select" Asp-for ="gender">
+                                                <option>Select Gender</option>
+                                                  @if(@Model.gender == 0)
+                                                {
+                                                    <option selected value="0">Female</option>
+                                                    <option value="1">Male</option>
+
+                                                } else
+                                                    {
+                                                    <option selected  value="1">Male</option>
+                                                    <option  value="0">Female</option>
+                                       
+                                                    }
+                  
+                                            </select>
+                                            <span asp-validation-for="gender" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Email"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter an Email" value="@Model.Email" Asp-for ="Email">
+                                            <span asp-validation-for="Email" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="phoneNo"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter a mobile number"  value="@Model.phoneNo" Asp-for ="phoneNo">
+                                            <span asp-validation-for="phoneNo" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                     <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="DepartmentIdFk" >  </label>
+                                            <select class="form-control select" Asp-for ="DepartmentIdFk">
+                                            @foreach (var i in  ViewBag.DepartmentIdFkNavigation)
+                                            {
+                                                <option value="@i.Id">@i.Name</option>
+                                            }
+                                        </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="student-submit">
+                                        <button type="submit" asp-route-SID="@Model.Id" name ="submit"class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>}
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+</div>

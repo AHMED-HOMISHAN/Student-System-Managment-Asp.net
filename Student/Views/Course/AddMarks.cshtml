@@ -1,0 +1,108 @@
+﻿                                        @model Enrollement
+@{
+    TempData["Title"] = "Add Marks";
+}
+
+
+
+
+<div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Add Marks to Students</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Course">Course</a></li>
+                                <li class="breadcrumb-item active">Add Courses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                  @{
+                        if (@TempData["MsgS"]!=null)
+                        {
+                           
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+ <p>@TempData["MsgS"]</p>                
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            
+                        }  
+                        if (@TempData["MsgD"]!=null)
+                        {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+ <p>@TempData["MsgD"]</p>                
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        }
+
+    }
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="AddMarks" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title"><span>Adding Marks Information</span></h5>
+                                </div>
+
+                                <div class="form-group local-forms">
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="studentIdFk" >  </label>
+                                            <select class="form-control select" Asp-for ="studentIdFk">
+                                                @foreach (var i in ViewBag.StudentFkNavigation)
+                                                {
+                                                    <option value="@i.Id">@i.Name</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="form-group local-forms">
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="courseIdFk" >  </label>
+                                            <select class="form-control select" Asp-for ="courseIdFk">
+                                                @foreach (var i in ViewBag.courseFkNavigation)
+                                                {
+
+                                                    <option value="@i.Id">@i.Name</option>
+
+
+                                                }
+                                            </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="courseScore"> </label>
+                                                <input type="text"  Asp-for="courseScore" class="form-control">
+                                                <span asp-validation-for="courseScore" class="text-danger"> </span>
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                        <div class="col-12">
+                                            <div class="student-submit">
+                                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

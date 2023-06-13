@@ -1,0 +1,137 @@
+﻿@model Students
+@{
+    TempData["Title"] = "Edit Student";
+}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <div class="page-sub-header">
+                    <h3 class="page-title">Add Students</h3>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Students">Student</a></li>
+                    <li class="breadcrumb-item active">Add Students</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card comman-shadow">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <form asp-action="EditStudent" method="post">
+                                @if (Model != null)
+                                {
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="Name"> </label>
+                                                <input class="form-control" type="text" placeholder="Enter Name" value="@Model.Name" Asp-for="Name">
+                                                <span asp-validation-for="Name" class="text-danger"> </span>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="Age"> </label>
+                                                <input class="form-control" type="text" placeholder="Enter Age" value="@Model.Age" Asp-for="Age">
+                                                <span asp-validation-for="Age" class="text-danger"> </span>
+
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="gender"> </label>
+                                                <select class="form-control select"  Asp-for="gender">
+                                                    <option>Select Gender</option>
+                                                    @if (@Model.gender == 0)
+                                                    {
+                                                        <option selected value="0">Female</option>
+                                                        <option value="1">Male</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option selected  value="1">Male</option>
+                                                        <option  value="0">Female</option>
+
+                                                    }
+
+                                                </select>
+                                                <span asp-validation-for="gender" class="text-danger"> </span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="Email"></label>
+                                                <input class="form-control" type="text" placeholder="Enter the Email" value="@Model.Email" Asp-for="Email">
+                                                <span asp-validation-for="Email" class="text-danger"> </span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Password" > </label>
+                                            <input class="form-control" type="text" placeholder="Enter Password" Asp-for ="Password">
+                                            <span asp-validation-for="Password" class="text-danger"> </span>
+
+                                        </div>
+                                    </div> 
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="phoneNo"> </label>
+                                                <input class="form-control" type="text" placeholder="Enter a phone"  value="@Model.phoneNo" Asp-for="phoneNo">
+                                                <span asp-validation-for="phoneNo" class="text-danger"> </span>
+
+                                            </div>
+                                        </div>
+                                         <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Level" >  </label>
+                                            <select class="form-control select" Asp-for ="Level">
+                                                <option value="1">Freshman</option>
+                                                <option value="2">Sophomore</option>
+                                                <option value="3">Junior</option>
+                                                <option value="4">Senior</option>
+                                            </select>
+                                            <span asp-validation-for="Level" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                        <div class="col-12 col-sm-4">
+                                            <div class="form-group local-forms">
+                                                <label asp-for="DepartmentIdFk" >  </label>
+                                                <select class="form-control select" Asp-for ="DepartmentIdFk">
+                                                    @foreach (var i in ViewBag.DepartmentIdFkNavigation)
+                                                    {
+                                                        <option value="@i.Id">@i.Name</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="student-submit">
+                                                <button type="submit" asp-route-SID="@Model.Id" name ="submit"class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>

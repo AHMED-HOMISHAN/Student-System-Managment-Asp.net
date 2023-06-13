@@ -1,0 +1,143 @@
+﻿@model Students 
+
+@{
+    TempData["Title"] = "Profile";
+
+}
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row">
+<div class="col">
+<h3 class="page-title">Profile</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a asp-action="Index">Dashboard</a></li>
+<li class="breadcrumb-item active">Profile</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="profile-header">
+<div class="row align-items-center">
+<div class="col-auto profile-image">
+<a href="#">
+<img class="rounded-circle" alt="User Image" src="~/assets/img/profiles/avatar-01.jpg">
+</a>
+</div>
+<div class="col ms-md-n2 profile-user-info">
+<h4 class="user-name mb-0">@Model.Name</h4>
+                        @{
+                            if (@Model.Level == 1) {
+                                <h6 class="text-muted">Freshman</h6>
+                          }else if(@Model.Level == 2){
+                                <h6 class="text-muted">Sophomore</h6>
+                            }else if(@Model.Level == 3){
+                                <h6 class="text-muted">Junior</h6>
+                            }else if(@Model.Level == 4){
+                                <h6 class="text-muted">Senior</h6>
+                            }
+                            
+                                                                 }
+
+
+<div class="user-Location"><i class="fas fa-map-marker-alt"></i> Florida, United States</div>
+<div class="about-text">Hey, I am a student</div>
+</div>
+<div class="col-auto profile-btn">
+<a asp-action="EditStudent" asp-controller="Student" asp-route-SID="@Model.Id" class="btn btn-primary">
+Edit
+</a>
+</div>
+</div>
+</div>
+<div class="profile-menu">
+<ul class="nav nav-tabs nav-tabs-solid">
+<li class="nav-item">
+<a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">About</a>
+</li>
+
+</ul>
+</div>
+<div class="tab-content profile-tab-cont">
+
+<div class="tab-pane fade show active" id="per_details_tab">
+
+<div class="row">
+<div class="col-lg-9">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title d-flex justify-content-between">
+<span>Personal Details</span>
+<a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details"><i class="far fa-edit me-1"></i>Edit</a>
+</h5>
+<div class="row">
+<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Name</p>
+<p class="col-sm-9">@Model.Name</p>
+</div>
+<div class="row">
+<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Age</p>
+<p class="col-sm-9">@Model.Age</p>
+</div>
+<div class="row">
+<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email ID</p>
+<p class="col-sm-9">@Model.Email</p>
+</div>
+<div class="row">
+<p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Mobile Number</p>
+<p class="col-sm-9">@Model.phoneNo</p>
+</div>
+<div class="row">
+<p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
+ <p class="col-sm-9 mb-0">4663 Agriculture Lane,<br>
+Miami,<br>
+Florida - 33165,<br>
+United States.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3">
+
+<div class="card">
+<div class="card-body">
+<h5 class="card-title d-flex justify-content-between">
+<span>Account Status</span>
+<a class="edit-link" href="#"><i class="far fa-edit me-1"></i> Edit</a>
+</h5>
+<button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i> Active</button>
+</div>
+</div>
+
+
+<div class="card">
+<div class="card-body">
+<h5 class="card-title d-flex justify-content-between">
+<span>Courses </span>
+<a class="edit-link" href="#"><i class="far fa-edit me-1"></i> Edit</a>
+</h5>
+<div class="skill-tags">
+
+     @foreach(var c in @Model.StudentCourse)
+            {                           
+               
+                    <span>@c.CourseFKNavigation.Name</span>
+                    
+                
+            }
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</div>

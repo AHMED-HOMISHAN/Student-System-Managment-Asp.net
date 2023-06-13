@@ -1,0 +1,134 @@
+﻿@model Teachers
+@{
+    TempData["Title"] = "Add Teachers";
+}
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Add Teachers</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="teachers.html">Teachers</a></li>
+<li class="breadcrumb-item active">Add Teachers</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+
+     <form asp-action="AddTeacher" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title student-info">Teacher Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Name"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter  Name" Asp-for ="Name">
+                                            <span asp-validation-for="Name" class="text-danger"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Age"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter Age" Asp-for ="Age">
+                                            <span asp-validation-for="Age" class="text-danger"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="gender"> </label>
+                                            <select class="form-control select" Asp-for ="gender">
+                                                <option>Select Gender</option>
+                                                <option value="0">Female</option>
+                                                <option value="1">Male</option>
+                                            </select>
+                                            <span asp-validation-for="gender" class="text-danger"> </span>
+
+                                        </div>
+                                    </div> 
+                                    
+                    
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Balance"> </label>
+                                           
+                                            <input class="form-control" type="text" placeholder="$$" Asp-for ="Balance">
+                                            <span asp-validation-for="Balance" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Email"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter Email Address" Asp-for ="Email">
+                                            <span asp-validation-for="Email" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="Password"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter Password" Asp-for ="Password">
+                                            <span asp-validation-for="Password" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="phoneNo"> </label>
+                                            <input class="form-control" type="text" placeholder="Enter Phone Number" Asp-for ="phoneNo">
+                                            <span asp-validation-for="phoneNo" class="text-danger"> </span>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms calendar-icon">
+                                    <label asp-for="JoinedDateTime"> </label>
+                                    <input class="form-control datetimepicker" data-date-format="MM-DD-YYYY" type="datetime" Asp-for ="JoinedDateTime" placeholder="DD-MM-YYYY">
+                                    <span asp-validation-for="JoinedDateTime" class="text-danger"> </span>
+
+                                    </div>
+                                    </div>
+                                    
+                                     <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                    <label asp-for="Experience"> </label>
+                                    <input class="form-control" type="text" Asp-for ="Experience" placeholder="Enter Experience">
+                                    <span asp-validation-for="Experience" class="text-danger"> </span>
+
+                                    </div>
+                                    </div>
+                                     <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label asp-for="DepartmentIdFk" >  </label>
+                                            <select class="form-control select" Asp-for ="DepartmentIdFk">
+                                            @foreach (var i in  ViewBag.DepartmentIdFkNavigation)
+                                            {
+                                                <option value="@i.Id">@i.Name</option>
+                                            }
+                                        </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="student-submit">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+

@@ -1,0 +1,71 @@
+﻿@model Subjects
+@{
+    TempData["Title"] = "Edit Subject";
+}
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Edit Subject</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><<a asp-action="Index" asp-contrller="Subject">Subject</a></li>
+<li class="breadcrumb-item active">Edit Subject</li>
+</ul>
+</div>
+</div>
+</div>
+@if (@Model != null)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="EditSubject" method="post">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title"><span>Subject Information</span></h5>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label asp-for="Name"> </label>
+                                        <input type="text" class="form-control" value="@Model.Name" name="Name">
+                                        <span asp-validation-for="Name" class="text-danger"> </span>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label asp-for="Description"> </label>
+                                        <input type="text" class="form-control"  value="@Model.Description" name="Description">
+                                        <span asp-validation-for="Description" class="text-danger"> </span>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label asp-for="TeacherIdFk" >  </label>
+                                        <select class="form-control select" Asp-for ="TeacherIdFk">
+                                            @foreach (var i in ViewBag.TeacherIdFkNavigation)
+                                            {
+                                                <option value="@i.Id">@i.Name</option>
+                                            }
+                                        </select>
+
+                                        </div>
+                                    </div>
+                <div class="col-12">
+                    <div class="student-submit">
+                        <button type="submit" name="submit" asp-route-SID="@Model.Id" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+        </div>
+        </div>
+        </div>
+    </div>}
+
+</div>

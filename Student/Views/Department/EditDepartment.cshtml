@@ -1,0 +1,57 @@
+﻿@model Departments
+@{
+    TempData["Title"] = "Edit DEPARTMENT";
+}
+   <div class="content container-fluid">
+
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Edit Department</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Department">Department</a></li>
+                        <li class="breadcrumb-item active">Edit Department</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @if (@Model != null)
+    {
+        <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+        <div class="card-body">
+        <form asp-action="EditDepartment" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="form-title"><span>Edit Department</span></h5>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="form-group local-forms">
+                        <label asp-for="Name"> </label>
+                        <input type="text" class="form-control" id="validationDefault01"Asp-for ="Name" required="">
+                        <span asp-validation-for="Name" class="text-danger"> </span>
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div class="form-group local-forms">
+                        <label asp-for="Description"> </label>
+                        <input type="text" class="form-control" id="validationDefault02"Asp-for ="Description" required="">
+                        <span asp-validation-for="Description" class="text-danger"> </span>
+
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="student-submit">
+                        <button type="submit"name="submit" asp-route-SID="@Model.Id" id="invalidCheck" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        </div>
+        </div>
+    </div>}
+</div>

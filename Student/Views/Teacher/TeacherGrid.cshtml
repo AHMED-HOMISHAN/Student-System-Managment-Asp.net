@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Student.Models.Teachers>
+@{
+    TempData["Title"] = "Teacher Grid";
+}
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Teachers</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a asp-action="Index" asp-controller="Teacher">Dashboard</a></li>
+<li class="breadcrumb-item active">Teachers</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="student-group-form">
+<div class="row">
+<div class="col-lg-3 col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search by ID ...">
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search by Name ...">
+</div>
+</div>
+<div class="col-lg-4 col-md-6">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search by Phone ...">
+</div>
+</div>
+<div class="col-lg-2">
+<div class="search-student-btn">
+<button type="btn" class="btn btn-primary">Search</button>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Teachers</h3>
+</div>
+<div class="col-auto text-end float-end ms-auto download-grp">
+<a asp-action="TeacherList" asp-controller="Teacher" class="btn btn-outline-gray me-2"><i class="feather-list"></i></a>
+<a asp-action="TeacherGrid" asp-controller="Teacher" class="btn btn-outline-gray me-2 active"><i class="feather-grid "></i></a>
+</div>
+</div>
+</div>
+
+<div class="student-pro-list">
+<div class="row">
+
+                            @foreach(Teachers teach in Model)
+                            {
+                                <div class="col-xl-3 col-lg-4 col-md-6 d-flex">
+<div class="card">
+<div class="card-body">
+<div class="student-box flex-fill">
+<div class="student-img">
+<a asp-action="TeacherView" asp-route-SID="@teach.Id" asp-controller="Teacher">
+<img class="img-fluid" alt="Teachers Info" src="~/assets/img/profile-user.jpg">
+</a>
+</div>
+<div class="student-content pb-0">
+<h5><a asp-action="TeacherView" asp-route-SID="@teach.Id" asp-route-Dep_TEACH="@teach.DepartmentIdFkNavigation.Description" asp-controller="Teacher">@teach.Name</a></h5>
+<h6>@teach.Name</h6>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+}
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

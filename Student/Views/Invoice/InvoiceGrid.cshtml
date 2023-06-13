@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Student.Models.Invoices>
+@{
+    TempData["Title"] = "Invoice Grid";
+}
+
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Invoice Grid</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a asp-action="Index" asp-controller="Student">Dashboard</a></li>
+<li class="breadcrumb-item active">Invoice Grid</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col"></div>
+<div class="col-auto">
+<a asp-action="Index" class="invoices-links">
+<i class="feather feather-list"></i>
+</a>
+<a asp-action="InvoiceGrid" class="invoices-links active">
+<i class="feather feather-grid"></i>
+</a>
+</div>
+</div>
+</div>
+
+   <div class="card report-card">
+        <div class="card-body pb-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="app-listing">
+                        <li></li>
+    <li>
+    <div class="report-btn">
+        <a  onclick="return print();" class="btn">
+            <img src="assets/img/icons/invoices-icon5.png" alt="" class="me-2"> Generate report
+        </a>
+    </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="card invoices-tabs-card border-0">
+<div class="card-body card-body pt-0 pb-0">
+<div class="invoices-main-tabs border-0 pb-0">
+<div class="row align-items-center">
+<div class="col-lg-12 col-md-12">
+<div class="invoices-settings-btn invoices-settings-btn-one">
+<a asp-action="AddInvoice" class="btn">
+<i class="feather feather-plus-circle"></i> New Invoice
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+
+        @foreach(Invoices invo in Model)
+                            {
+                               <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
+<div class="card invoices-grid-card w-100">
+<div class="card-header d-flex justify-content-between align-items-center">
+<a asp-action="ViewInvoice" class="invoice-grid-link">@invo.Id</a>
+<div class="dropdown dropdown-action">
+<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+<div class="dropdown-menu dropdown-menu-end">
+<a class="dropdown-item" asp-route-SID="@invo.Id" asp-action="EditInvoice"><i class="far fa-edit me-2"></i>Edit</a>
+<a class="dropdown-item"asp-route-SID="@invo.Id" asp-action="ViewInvoice"><i class="far fa-eye me-2"></i>View</a>
+</div>
+</div>
+</div>
+<div class="card-middle">
+<h2 class="card-middle-avatar"></h2>
+</div>
+<div class="card-body">
+<div class="row align-items-center">
+<div class="col">
+<span><i class="far fa-money-bill-alt"></i> @invo.InoviceAmount</span>
+<h6 class="mb-0">$@invo.Rate</h6>
+</div>
+<div class="col-auto">
+<span><i class="far fa-calendar-alt"></i> @invo.DueDate</span>
+<h6 class="mb-0">@invo.CreatedDate</h6>
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="row align-items-center">
+<div class="col-auto">
+<span class="badge bg-success-dark">@invo.Status</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+}
+</div>
+</div>
+<div class="col-lg-12">
+<div class="invoice-load-btn">
+<a href="#" class="btn">
+<span class="spinner-border text-primary"></span> Load more
+</a>
+</div>
+</div>

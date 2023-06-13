@@ -1,0 +1,148 @@
+﻿@model Invoices
+@{
+    TempData["Title"] = "Invoice Details";
+}
+
+
+<div class="content container-fluid">
+
+   <div class="col-xl-10" style="margin-left: 50%; margin-bottom:2rem;">
+       <a class="btn btn-primary" onclick="return print();">
+           Export PDF
+       </a>
+   </div>
+
+    @if (@Model != null)
+    {
+        <div class="row justify-content-center">
+<div class="col-xl-10">
+<div class="card invoice-info-card">
+<div class="card-body">
+<div class="invoice-item invoice-item-one">
+<div class="row">
+                         
+<div class="col-md-6">
+<div class="invoice-logo">
+<img src="~/assets/img/logo.png" alt="logo">
+</div>
+<div class="invoice-head">
+<h2>Invoice</h2>
+<p>Invoice Number : @Model.Id</p>
+</div>
+</div>
+<div class="col-md-6">
+<div class="invoice-info">
+<strong class="customer-text-one">Invoice From</strong>
+<h6 class="invoice-name">Sanna'a Unversity</h6>
+<p class="invoice-details">
+@Model.FromAddress<br>
+
+</p>
+</div>
+</div>
+</div>
+</div>
+
+    <div class="invoice-item invoice-item-two">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="invoice-info">
+                    <strong class="customer-text-one">Billed to</strong>
+                    <h6 class="invoice-name">  @TempData["STNAME"] </h6>
+                    <p class="invoice-details invoice-details-two">
+                        Address<br/>
+                        @Model.ToAddress <br />
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="invoice-info invoice-info2">
+                    <strong class="customer-text-one">Payment Details</strong>
+                    <p class="invoice-details">
+                        Debit Card <br>
+                        XXXXXXXXXXXX-2541 <br>
+                        HDFC Bank
+                    </p>
+                    <div class="invoice-item-box">
+                        <p>Recurring : 15 Months</p>
+                        <p class="mb-0">Status: @Model.Status</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="invoice-issues-box">
+        <div class="row">
+            <div class="col-lg-6 col-md-10">
+                <div class="invoice-issues-date">
+                    <p>Issue Date : @Model.CreatedDate</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-10">
+                <div class="invoice-issues-date">
+                    <p>Due Date : @Model.DueDate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="invoice-item invoice-table-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="invoice-table table table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Rate/Item</th>
+                                <th>Quantity</th>
+                                <th>Discount (%)</th>
+                                <th class="text-end">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Description</td>
+                                <td>@Model.Category</td>
+                                <td>@Model.Rate</td>
+                                <td>@Model.Quantity</td>
+                                <td>@Model.Discount<span>%</span></td>
+                                <td class="text-end">@Model.InoviceAmount</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-6 col-md-6">
+            <div class="invoice-terms">
+                <h6>Notes:</h6>
+                <p class="mb-0">Enter customer notes or any other details</p>
+            </div>
+            <div class="invoice-terms">
+                <h6>Terms and Conditions:</h6>
+                <p class="mb-0">Enter customer notes or any other details</p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="invoice-total-card">
+                <div class="invoice-total-box">
+                    <div class="invoice-total-footer">
+                        <h4>Total Amount <span>@Model.Rate$</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="invoice-sign text-end">
+        <img class="img-fluid d-inline-block" src="~/assets/img/signature.png" alt="sign">
+        <span class="d-block">Harristemp</span>
+    </div>
+</div>
+</div>
+</div>
+</div>}
+</div>
